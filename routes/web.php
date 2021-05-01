@@ -40,11 +40,11 @@ Route::post('/edit_profile',[MyController::class, 'edit_profile']);
 
 // Product
 Route::get('/tambah_produk', [MyController::class,"tambah_produk_view"]);
-Route::get('/hapus_edit_produk', [MyController::class,"hapus_edit_produk"]);
-
-Route::post('/produk/tambah',[MyController::class, 'tambah_produk']);
+Route::get('/hapusedit_produk', [MyController::class,"hapusedit_produk"]);
 Route::get('/produk/hapus/{id_produk}', [MyController::class,"hapus"]);
 Route::get('/produk/edit/{id_produk}', [MyController::class,"edit"]);
+
+Route::post('/produk/tambah',[MyController::class, 'tambah_produk']);
 Route::post('/produk/edit/confirm',[MyController::class, 'edit_produk']);
 
 

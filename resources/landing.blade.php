@@ -20,8 +20,8 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
             </tr>
   
             <tr>
-                <td><center> <a href="{{url("/login")}}" class="btn btn-primary btn-block" style="background-color:#597882; border-radius: 10px; width:200px;">Log In</a><center></td>
-                <td><center> <a href="{{url("/register")}}" class="btn btn-primary btn-block" style="background-color:#597882; border-radius: 10px; width:200px;">Register</a></center></td>
+                <td><center> <a href="{{url('/login')}}" class="btn btn-primary btn-block" style="background-color:#597882; border-radius: 10px; width:200px;">Log In</a><center></td>
+                <td><center> <a href="{{url('/register')}}" class="btn btn-primary btn-block" style="background-color:#597882; border-radius: 10px; width:200px;">Register</a></center></td>
 				 
             </tr>
   

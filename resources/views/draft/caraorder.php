@@ -59,9 +59,9 @@
   </nav>
 
   <p>
-    <ul>
-      <li>1. Buka website Oleh - oleh Yogya, pilih produk yang kamu suka, pastikan kamu memilih produk sesuai keinginan kamu kemudian klik Beli.</li>
-    </ul>
+  <ul>
+    <li>1. Buka website Oleh - oleh Yogya, pilih produk yang kamu suka, pastikan kamu memilih produk sesuai keinginan kamu kemudian klik Beli.</li>
+  </ul>
   </p>
 
 
