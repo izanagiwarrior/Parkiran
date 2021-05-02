@@ -26,6 +26,14 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
       <input name="kategori" value="{{$produk->kategori}}" class="form-control" id="exampleInputEmail1" placeholder="Kategori">
     </div>
     <div class="form-group">
+      <label for="exampleInputEmail1">Lat</label>
+      <input name="lat"  value="{{$produk->lat}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Lang</label>
+      <input name="lang"  value="{{$produk->lang}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran">
+    </div>
+    <div class="form-group">
       <label for="exampleFormControlTextarea1">Detail Parkiran</label>
       <textarea name="detail_parkiran" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$produk->detail_parkiran}}</textarea>
     </div>

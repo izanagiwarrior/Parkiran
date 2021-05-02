@@ -45,6 +45,8 @@ $resarr = $res;
         <td><img src="{{$resarr[$i]->gambar}}" width="100" height="auto"></td>
         <td>{{$resarr[$i]->detail_parkiran}}</td>
         <td>
+        
+        <a class="btn btn-success"target='_blank' href='https://www.google.com/maps?z=15&daddr={{$resarr[$i]->lat}},{{$resarr[$i]->lang}}'>Rutenya</a>
           <form method="post" action="{{url('/beli')}}">
             @csrf
             <input type="hidden" name="id_produk" value="{{$resarr[$i]->id}}">

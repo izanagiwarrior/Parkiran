@@ -120,8 +120,8 @@ class MyController extends Controller
         $file = $request->file('gambar');
         $file->move(public_path() . "/foto/", $file->getClientOriginalName());
         DB::insert(
-            "insert into parkiran (nama_parkiran,harga,kategori,gambar,detail_parkiran) values (?, ?, ?, ?, ?)",
-            [$request->input("nama_parkiran"), $request->input("harga"), $request->input("kategori"), "foto/" . $file->getClientOriginalName(), $request->input("detail_parkiran")]
+            "insert into parkiran (nama_parkiran,harga,kategori,gambar,detail_parkiran,lat,lang) values (?, ?, ?, ?, ?, ?, ?)",
+            [$request->input("nama_parkiran"), $request->input("harga"), $request->input("kategori"), "foto/" . $file->getClientOriginalName(), $request->input("detail_parkiran"), $request->input("lat"), $request->input("lang")]
         );
 
         return redirect("/tambah_produk");
@@ -133,14 +133,14 @@ class MyController extends Controller
         if ($file != null) {
             $file->move(public_path() . "/foto/", $file->getClientOriginalName());
             DB::update(
-                'update parkiran set nama_parkiran = ?, harga = ?, kategori = ?, gambar = ?, detail_parkiran = ? where id = ?',
-                [$request->input("nama_parkiran"), $request->input("harga"), $request->input("kategori"), "foto/" . $file->getClientOriginalName(), $request->input("detail"), $request->input("produk_id")]
+                'update parkiran set nama_parkiran = ?, harga = ?, kategori = ?, gambar = ?, detail_parkiran = ?, where id = ?, lat = ?, lang = ?',
+                [$request->input("nama_parkiran"), $request->input("harga"), $request->input("kategori"), "foto/" . $file->getClientOriginalName(), $request->input("detail"), $request->input("produk_id"), $request->input("lat"), $request->input("lang")]
             );
             return redirect("/hapusedit_produk");
         }
         DB::update(
-            'update parkiran set nama_parkiran = ?, harga = ?, kategori = ?, gambar = ?, detail_parkiran = ? where id = ?',
-            [$request->input("nama_parkiran"), $request->input("harga"), $request->input("kategori"), $request->input('gambar_old'), $request->input("detail_parkiran"), $request->input("produk_id")]
+            'update parkiran set nama_parkiran = ?, harga = ?, kategori = ?, gambar = ?, detail_parkiran = ?, where id = ?, lat = ?, lang = ?',
+            [$request->input("nama_parkiran"), $request->input("harga"), $request->input("kategori"), $request->input('gambar_old'), $request->input("detail_parkiran"), $request->input("produk_id"), $request->input("lat"), $request->input("lang")]
         );
 
         return redirect("/hapusedit_produk");
