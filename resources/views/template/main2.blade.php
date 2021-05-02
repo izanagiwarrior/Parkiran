@@ -66,6 +66,7 @@ $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
             <a class="dropdown-item" href="{{url('/tambah_produk')}}">Tambah Parkiran</a>
             <a class="dropdown-item" href="{{url('/hapusedit_produk')}}">Hapus / Edit Parkiran</a>
             <a class="dropdown-item" href="{{url('/lihat_bukti_pembayaran')}}">Lihat Bukti Pembayaran</a>
+            <a class="dropdown-item" href="{{url('/lihat_feedback')}}">Lihat Feedback</a>
           </div>
         </li>
         @endif

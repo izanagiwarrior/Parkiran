@@ -76,12 +76,20 @@ Route::get('/admin_reg', [MyController::class,"admin_reg"]);
 
 Route::post('/register_acc_admin',[MyController::class, 'register_admin']);
 
+
 // Confirmation
 Route::get('/checkout/{id_keranjang}', [MyController::class,"checkout"]);
 Route::get('/teracc/{id_keranjang}', [MyController::class,"teracc_process"]);
 Route::get('/dteracc/{id_keranjang}', [MyController::class,"dteracc_process"]);
 
 Route::post('/teracc',[MyController::class, 'teracc']);
+
+
+//Feedback
+Route::get('/lihat_feedback', [MyController::class,"lihat_feedback"]);
+Route::get('/feedback', [MyController::class,"feedback"]);
+
+Route::post('/feedback',[MyController::class, 'feedback_process']);
 
 
 // Lainnya

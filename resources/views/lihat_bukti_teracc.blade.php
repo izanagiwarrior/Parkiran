@@ -27,7 +27,7 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
         $user = DB::select("select * from akun where id = ?", [$bukti_pembayaran[$i]->id_akun])[0];
         @endphp
         <tr>
-          <th scope="row">{{$i}}</th>
+          <th scope="row">{{$i+1}}</th>
           <td>{{$user->nama_lengkap}}<input name="nama_lengkap" value="{{$user->nama_lengkap}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>
 
           <td>{{$produk->nama_parkiran}}<input name="nama_parkiran" value="{{$produk->nama_parkiran}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>

@@ -29,7 +29,7 @@ $bukti = DB::select('select * from bukti_pembayaran' );
           $user = DB::select("select * from akun where id = ?", [$bukti_pembayaran[$i]->id_akun])[0];
           @endphp
           <tr>
-            <th scope="row">{{$i}}</th>
+            <th scope="row">{{$i+1}}</th>
             <td>{{$user->nama_lengkap}}<input name="nama_lengkap" value="{{$user->nama_lengkap}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>
             <td>
               <img src="{{url($bukti_pembayaran[$i]->gambar)}}" width="200px" height="auto"><input name="nama_parkiran" value="{{$bukti_pembayaran[$i]->gambar}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden">

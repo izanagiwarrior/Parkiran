@@ -321,6 +321,32 @@ class MyController extends Controller
 
     
     
+    // Feedback
+    public function lihat_feedback()
+    {
+        return view('lihat_feedback');
+    }
+    
+    public function feedback()
+    {
+        return view('feedback');
+    }
+
+    public function feedback_process(Request $request)
+    {
+
+        DB::insert(
+            "insert into feedback (nama_lengkap,feedback) values (?, ?)",
+            [$request->input("namadd"), $request->input("feedback")]
+        );
+
+        return redirect("/");
+    
+    }
+    
+
+    
+    
     // Lainnya
     public function lihat_bukti_pembayaran(Request $request)
     {
@@ -352,7 +378,7 @@ class MyController extends Controller
         DB::insert("insert into bukti_pembayaran (metode,gambar,id_akun,id_produk) values 
         (?,?,?,?)", [$metode, $gambar, $id_akun, $id_produk]);
 
-        return redirect("/");
+        return redirect("/feedback");
     }
 
     
