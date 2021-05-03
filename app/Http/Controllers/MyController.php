@@ -379,7 +379,7 @@ class MyController extends Controller
         (?,?,?,?)", [$metode, $gambar, $id_akun, $id_produk]);
 
         return redirect("/feedback");
-    }
+    }  
 
     
 
