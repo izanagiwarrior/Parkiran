@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 */
 
 // Landing
-Route::get('/',[MyController::class, 'landing']);
+Route::get('/',[MyController::class, 'landing'])->name('home');
 
 
 // Login - Register - Logout

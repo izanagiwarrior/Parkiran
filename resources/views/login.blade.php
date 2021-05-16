@@ -19,6 +19,8 @@
             <div class="form-group">
 
             </div><button class="btn btn-primary btn-block" style="background-color:#597882; border-radius: 10px;" type="submit">Log In</button>
+            <a href="{{url('/register')}}" class="btn btn-primary btn-block"style="background-color:#7CFC00; border-radius: 10px;">Register</a>
+            <a href="{{url('/')}}" class="btn btn-primary btn-block"style="background-color:#808080; border-radius: 10px;">Back</a>
         </form>
     </div>
 </section>

@@ -13,9 +13,9 @@ class MyController extends Controller
     {
         return view('landing');
     }
-    
 
-    
+
+
     // Login - Register - Logout
     public function login_view()
     {
@@ -26,7 +26,7 @@ class MyController extends Controller
     {
         return view('register');
     }
-    
+
     public function logout(Request $request)
     {
         session()->regenerate();
@@ -45,10 +45,9 @@ class MyController extends Controller
         } else {
             return redirect("/login?message=Password Salah");
         }
-
         return redirect("/");
     }
-    
+
     public function register(Request $request)
     {
         session()->regenerate();
@@ -57,12 +56,13 @@ class MyController extends Controller
         DB::insert(
             'insert into akun (username,nama_lengkap,password,email,nohp,alamat,jenis_kelamin,tanggal_lahir,role,csrf) 
             values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$request->input("username"), $request->input("username"), $request->input("password"), $request->input("email"), $request->input("nohp"), $request->input("alamat"), "laki-laki", "2020-10-10 10:10:10", "user", ""]
+            [$request->input("username"), $request->input("nama"), $request->input("password"), $request->input("email"), $request->input("nohp"), $request->input("alamat"),$request->input("jenis_kelamin"), $request->input("date"), "user", ""]
         );
-
-        return redirect("register?message=Berhasil Register");
+        $result = DB::select('select id,password from akun where username = ?', [$request->input("username")]);
+        DB::update('update akun set csrf = ? where id = ?', [csrf_token(), $result[0]->id]);
+        return redirect("/")->with('error', 'Register Berhasil!');
     }
-    
+
 
 
     // About Us
@@ -70,7 +70,7 @@ class MyController extends Controller
     {
         return view('about_us');
     }
-    
+
 
     // Profile
     public function profile()
@@ -87,9 +87,9 @@ class MyController extends Controller
 
         return redirect("/profile");
     }
-    
 
-    
+
+
     // Product
     public function tambah_produk_view()
     {
@@ -145,10 +145,10 @@ class MyController extends Controller
 
         return redirect("/hapusedit_produk");
     }
-    
 
-    
-    
+
+
+
     // Find - Cari
     public function cari(Request $request)
     {
@@ -173,10 +173,10 @@ class MyController extends Controller
     {
         return view('search');
     }
-    
 
-    
-    
+
+
+
     // Buy
     public function beli(Request $request)
     {
@@ -192,10 +192,10 @@ class MyController extends Controller
 
         return redirect("/keranjang");
     }
-    
 
-    
-    
+
+
+
     // Cart
     public function keranjang()
     {
@@ -224,10 +224,10 @@ class MyController extends Controller
 
         return redirect("/keranjang");
     }
-    
 
-    
-    
+
+
+
     // Category ( Barat - Utara - Selatan )
     public function barat()
     {
@@ -243,10 +243,10 @@ class MyController extends Controller
     {
         return view('selatan');
     }
-    
 
-    
-    
+
+
+
     // Admin
     public function admin_reg()
     {
@@ -266,10 +266,10 @@ class MyController extends Controller
 
         return redirect("register?message=Berhasil Register");
     }
-    
 
-    
-    
+
+
+
     // Confirmation
     public function checkout(Request $request, $id_keranjang)
     {
@@ -317,16 +317,16 @@ class MyController extends Controller
         return redirect("/");
     }
 
-    
 
-    
-    
+
+
+
     // Feedback
     public function lihat_feedback()
     {
         return view('lihat_feedback');
     }
-    
+
     public function feedback()
     {
         return view('feedback');
@@ -336,17 +336,16 @@ class MyController extends Controller
     {
 
         DB::insert(
-            "insert into feedback (nama_lengkap,feedback) values (?, ?)",
-            [$request->input("namadd"), $request->input("feedback")]
+            "insert into feedback (nama_lengkap,feedback,rating) values (?, ?, ?)",
+            [$request->input("namadd"), $request->input("feedback"), $request->input("rating")]
         );
 
-        return redirect("/");
-    
+        return redirect("/")->with('error', 'Transaksi Selesai !');
     }
-    
 
-    
-    
+
+
+
     // Lainnya
     public function lihat_bukti_pembayaran(Request $request)
     {
@@ -357,7 +356,7 @@ class MyController extends Controller
 
     public function lihat_bukti_teracc(Request $request)
     {
-        
+
         $user = DB::select("select * from akun where csrf = ?", [csrf_token()]);
         $bukti_pembayaran = DB::select("select * from teracc where id_akun = ?", [$user[0]->id]);
 
@@ -379,11 +378,11 @@ class MyController extends Controller
         (?,?,?,?)", [$metode, $gambar, $id_akun, $id_produk]);
 
         return redirect("/feedback");
-    }  
+    }
 
-    
 
-    
-    
+
+
+
     // 
 }

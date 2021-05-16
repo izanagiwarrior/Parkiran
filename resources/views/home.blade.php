@@ -6,11 +6,15 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
 @section('content')
 
 
-
 <br>
 <div class="">
   <div class="container shadow">
     <div class="row">
+      @if(session()->has('error'))
+      <div class="alert alert-danger">
+        {{ session()->get('error') }}
+      </div>
+      @endif  
       <div class="pb-5 pt-5 col bg-light text-center shadow" style="background-image: url(batik.jpg);">
         <h2 style="text-shadow: 3px 2px 15px black; color: #ffe68a; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">JuPark</h2>
         <p style="text-shadow: 3px 2px 15px black; color:white;"><b><i>Cari Parkiran Terdekat</i></b></p>

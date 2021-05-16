@@ -20,6 +20,7 @@ $i = 1
                 <th scope="col">No</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Parkiran</th>
+                <th scope="col">Rating</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@ $i = 1
                 <th scope="row">{{$i}}</th>
                 <td>{{$index->nama_lengkap}}</td>
                 <td>{{$index->feedback}}</td>
+                <td>{{$index->rating}} of 5</td>
             </tr>
             @php
             $i += 1

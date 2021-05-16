@@ -19,7 +19,11 @@ $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
       <div class="pb-5 pt-5 col bg-transparent  ">
         <h2 style="text-align:left; ">Solusi Mencari Parkir Anda</h2>
         <p style="text-align:left;"><b><i>Cari Parkir, Booking Parkir, Booking Valey<br>Semua bisa, hanya di JuPark!</i></b></p>
-
+        @if(session()->has('error'))
+        <div class="alert alert-danger">
+          {{ session()->get('error') }}
+        </div>
+        @endif
         <form action="{{route('cari')}}">
           <div class="d-flex justify-content-center">
             <select name="forma">

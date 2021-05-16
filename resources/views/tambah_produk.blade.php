@@ -22,8 +22,12 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
       <input name="harga" class="form-control" id="exampleInputEmail1" placeholder="Harga">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Kategori</label>
-      <input name="kategori" class="form-control" id="exampleInputEmail1" placeholder="Kategori">
+    <label for="cars">Pilih Lokasi</label>
+    <select name="kategori" id="cars">
+      <option value="Barat,kosong">Barat</option>
+      <option value="Selatan,kosong">Selatan</option>
+      <option value="Utara,kosong">Utara</option>
+    </select>
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Lat</label>

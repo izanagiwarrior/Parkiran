@@ -39,9 +39,9 @@ $keranjang = DB::select("select * from keranjang where id_pembeli = ?", [$result
           <td>Rp.{{$prod[0]->harga}}</td>
           <td>Rp.{{$prod[0]->harga*$keranjang[$i]->jumlah}}</td>
           <td>
-            <a href="{{url('/edit_keranjang/'.$keranjang[$i]->id)}}" class="btn btn-success">Edit</a>
-            <a href="{{url('/hapus_keranjang/'.$keranjang[$i]->id)}}" class="btn btn-danger">Hapus</a>
-            <a href="{{url('/checkout/'.$keranjang[$i]->id)}}" class="btn btn-danger">Checkout</a>
+            <a href="{{url('/edit_keranjang/'.$keranjang[$i]->id)}}" class="btn btn-warning">Edit</a>
+            <a href="{{url('/hapus_keranjang/'.$keranjang[$i]->id)}}" class="btn btn-danger">Batal</a>
+            <a href="{{url('/checkout/'.$keranjang[$i]->id)}}" class="btn btn-success">Checkout</a>
           </td>
         </tr>
         @endfor
