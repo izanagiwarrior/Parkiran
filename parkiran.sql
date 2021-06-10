@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2021 at 09:15 AM
+-- Generation Time: Jun 10, 2021 at 12:21 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.5
 
@@ -46,10 +46,11 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `username`, `nama_lengkap`, `password`, `email`, `nohp`, `alamat`, `jenis_kelamin`, `tanggal_lahir`, `role`, `csrf`) VALUES
-(22, 'admin', 'Admin', '123', 'admin@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'admin', '3YiSbYUv4yavyBYQnfHDqXTLhkIp4hh5PVLEDzMl'),
-(23, 'user', 'User', '123', 'user@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'pengguna', 'fTFLf9dVdhtNSaHoiDVWuSPSgMeOWLVCIxluPxag'),
+(22, 'admin', 'Admin', '123', 'admin@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'admin', 'jdBIcke5hz0YrR2NApTJYiV8YiiXOki0SpGtjiiB'),
+(23, 'user', 'User', '123', 'user@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'pengguna', 'I4tuORehcKrZAxMCutMZLNEkeypmIfCtxsE1M23l'),
 (24, 'petugas', 'Petugas', '123', 'petugas@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'petugas', 'aStD2eefSYkNYYJ33hZ1FJzWet7h2lzlZVZvyYrx'),
-(25, 'klien', 'Client', '123', 'client@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'klien', 'tgQjBrpTkmK6YBZ3wNOeHmH4mKP8XmPnN8clUoMx');
+(25, 'klien', 'Client', '123', 'client@gmail.com', '081234567890', 'Bandung', 'laki-laki', '2020-10-10', 'klien', 'tgQjBrpTkmK6YBZ3wNOeHmH4mKP8XmPnN8clUoMx'),
+(38, 'neta_keren', 'Neta Keren', '12341234', 'neta@gmail.com', '082189100482', 'Jl Bambu Ori', 'laki-laki', '2021-06-10', 'user', 'LSgc4CV2KnEaqBjjqOkmZhLxzP7CCS0vonuVxlpF');
 
 -- --------------------------------------------------------
 
@@ -67,6 +68,19 @@ CREATE TABLE `bukti_pembayaran` (
   `status` varchar(255) NOT NULL DEFAULT 'belum_diterima'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `bukti_pembayaran`
+--
+
+INSERT INTO `bukti_pembayaran` (`id`, `metode`, `gambar`, `id_akun`, `id_produk`, `total_pembayaran`, `status`) VALUES
+(21, 'bank_mandiri', '/foto/4.PNG', 23, 4, 0, 'diterima'),
+(22, 'bank_mandiri', '/foto/Salinan 517402.jpg', 23, 4, 0, 'diterima'),
+(23, 'bank_mandiri', '/foto/Salinan 517402.jpg', 23, 4, 0, 'diterima'),
+(24, 'bank_mandiri', '', 23, 10, 0, 'diterima'),
+(25, 'bank_mandiri', '', 23, 24, 0, 'diterima'),
+(28, 'bank_mandiri', '', 23, 6, 0, 'diterima'),
+(30, 'bank_mandiri', '', 23, 4, 0, 'diterima');
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +93,22 @@ CREATE TABLE `feedback` (
   `feedback` varchar(255) NOT NULL,
   `rating` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `nama_lengkap`, `feedback`, `rating`) VALUES
+(6, 'User', 'faiz', 1),
+(7, 'User', 'waw', 2),
+(8, 'User', 'aw', 3),
+(9, 'User', 'waw', 4),
+(10, 'User', '123', 5),
+(11, 'User', 'aw', 3),
+(12, 'User', 'aw', 2),
+(13, 'User', 'lol', 5),
+(14, 'User', '21', 5),
+(15, 'User', '123', 5);
 
 -- --------------------------------------------------------
 
@@ -138,7 +168,6 @@ INSERT INTO `parkiran` (`id`, `nama_parkiran`, `harga`, `kategori`, `gambar`, `d
 (20, 'Parkiran BEC (Valey)', 15000, 'Selatan,kosong', 'foto/parkir.png', 'Parkiran Tersedia 5', '-6.909355177805484', '107.60930669368507'),
 (21, 'Parkiran Dago (Biasa)', 13000, 'Barat,kosong', 'foto/parkir.png', 'Parkiran Tersedia 100', '-6.90100574331355', '107.61173973724634'),
 (22, 'Parkiran Dago (Valey)', 23000, 'Barat,kosong', 'foto/parkir.png', 'Parkiran Tersedia 7', '-6.90100574331355', '107.61173973724634'),
-(23, 'Parkiran Paskal (Biasa)', 15000, 'Utara,kosong', 'foto/parkir.png', 'Parkiran Tersedia 15', '-6.914857399754043', '-6.914857399754043'),
 (24, 'Parkiran Paskal (Valey)', 35000, 'Utara,kosong', 'foto/parkir.png', 'Parkiran Tersedia 10', '-6.914857399754043', '-6.914857399754043');
 
 -- --------------------------------------------------------
@@ -152,8 +181,25 @@ CREATE TABLE `teracc` (
   `gambar` varchar(255) NOT NULL DEFAULT '',
   `id_akun` int(255) NOT NULL DEFAULT 0,
   `id_produk` int(255) NOT NULL DEFAULT 0,
-  `total_pembayaran` int(255) NOT NULL DEFAULT 0
+  `total_pembayaran` int(255) NOT NULL DEFAULT 0,
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teracc`
+--
+
+INSERT INTO `teracc` (`id`, `gambar`, `id_akun`, `id_produk`, `total_pembayaran`, `status`) VALUES
+(22, '', 23, 4, 0, 'Parkir Selesai'),
+(23, '', 23, 4, 0, 'Parkir Selesai'),
+(24, '', 23, 10, 0, NULL),
+(25, '', 23, 24, 0, NULL),
+(26, '', 23, 6, 0, NULL),
+(27, '', 23, 6, 0, NULL),
+(28, '', 23, 6, 0, NULL),
+(29, '', 23, 6, 0, NULL),
+(30, '', 23, 6, 0, NULL),
+(31, '', 23, 4, 0, NULL);
 
 --
 -- Indexes for dumped tables
@@ -203,25 +249,25 @@ ALTER TABLE `teracc`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `bukti_pembayaran`
 --
 ALTER TABLE `bukti_pembayaran`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `parkiran`
@@ -233,7 +279,7 @@ ALTER TABLE `parkiran`
 -- AUTO_INCREMENT for table `teracc`
 --
 ALTER TABLE `teracc`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

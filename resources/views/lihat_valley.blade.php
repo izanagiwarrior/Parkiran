@@ -31,13 +31,20 @@ $i = 1
                 <th scope="row" class="text-center">{{$i}}</th>
                 <td class="text-center">{{$index->nama_parkiran}}</td>
                 <td class="text-center">
+                    <?php
+                    $bool = true;
+                    ?>
                     @foreach($data as $dt)
                     @if($index->id == $dt->id_produk)
                     <?php
                     $lol = 0;
                     ?>
+
                     @foreach ($dt as $dtt)
                     @if ($lol == 1)
+                    <?php
+                    $bool = false;
+                    ?>
                     <p>{{$dtt}} Transaksi</p>
                     @endif
                     <?php
@@ -46,6 +53,9 @@ $i = 1
                     @endforeach
                     @endif
                     @endforeach
+                    @if($bool == true)
+                    0 Transaksi
+                    @endif
                 </td>
             </tr>
             @php

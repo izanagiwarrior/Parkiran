@@ -126,7 +126,7 @@ $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
           [1, 50, 75, -1],
           [1, 50, 75, "All"]
         ],
-        "iDisplayLength": 1
+        "iDisplayLength": 5
       });
     });
   </script>

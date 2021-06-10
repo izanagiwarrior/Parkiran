@@ -290,15 +290,14 @@ class MyController extends Controller
         $bukti_pembayaran = DB::select("select * from bukti_pembayaran");
 
 
-        return view("lihat_bukti_pembayaran", ["bukti_pembayaran" => $bukti_pembayaran]);
+        return redirect()->back();
     }
 
     public function dteracc_process(Request $request, $id_keranjang)
     {
         DB::delete("delete from bukti_pembayaran where id = ?", [$id_keranjang]);
-        $bukti_pembayaran = DB::select("select * from bukti_pembayaran");
 
-        return view("lihat_bukti_pembayaran", ["bukti_pembayaran" => $bukti_pembayaran]);
+        return redirect()->back();
     }
 
     public function teracc(Request $request)
