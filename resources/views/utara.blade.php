@@ -41,17 +41,18 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
         <td>{{$resarr[$i]->detail_parkiran}}</td>
         <td>
           <a class="btn btn-success" target='_blank' href='https://www.google.com/maps?z=15&daddr={{$resarr[$i]->lat}},{{$resarr[$i]->lang}}'>Rutenya</a>
-          <form method="post" action="{{url('/beli')}}">
-            @csrf
-            <input type="hidden" name="id_produk" value="{{$resarr[$i]->id}}">
-            <input type="hidden" name="id_pembeli" value="{{$result[0]->id}}">
-            @if (strpos($resarr[$i]->kategori, "reserved") !== false)
+          @if (strpos($resarr[$i]->kategori, "reserved") !== false)
             <h3>Sudah Full</h3>
             @else
+            <form action="{{url('/beli')}}" method="post">
+            @csrf
+            @method('POST')
+            <input type="hidden" name="id_produk" value="{{$resarr[$i]->id}}">
+            <input type="hidden" name="id_pembeli" value="{{$result[0]->id}}">
             <button type="submit" class="btn btn-primary">Pilih</button>
-
+            
+            @endif
           </form>
-          @endif
         </td>
 
         </tr>
