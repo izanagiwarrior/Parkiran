@@ -14,13 +14,15 @@
         <form action="{{url('/login_acc')}}" method="POST" style="background-color:#E2E5E5;">
             @csrf
             <h2 class="text-center">Log In</h2>
-            <div class="form-group"><label for="email">Username</label><input class="form-control" type="text" name="username" style=" border-radius: 10px;"></div>
-            <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" name="password" style=" border-radius: 10px;"></div>
+            <div class="form-group"><label for="email">Username</label>
+            <input class="form-control" type="text" name="username" style=" border-radius: 10px;"></div>
+            <div class="form-group"><label for="password">Password</label>
+            <input class="form-control" type="password" name="password" style=" border-radius: 10px;"></div>
             <div class="form-group">
 
             </div><button class="btn btn-primary btn-block" style="background-color:#597882; border-radius: 10px;" type="submit">Log In</button>
-            <a href="{{url('/register')}}" class="btn btn-primary btn-block"style="background-color:#7CFC00; border-radius: 10px;">Register</a>
-            <a href="{{url('/')}}" class="btn btn-primary btn-block"style="background-color:#808080; border-radius: 10px;">Back</a>
+            <a href="{{url('/register')}}" class="btn btn-primary btn-block" style="background-color:#7CFC00; border-radius: 10px;">Register</a>
+            <a href="{{url('/')}}" class="btn btn-primary btn-block" style="background-color:#808080; border-radius: 10px;">Back</a>
         </form>
     </div>
 </section>

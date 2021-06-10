@@ -11,6 +11,7 @@ $bukti = DB::select('select * from bukti_pembayaran' );
 
 @extends("template/main2")
 @section('content2')
+
 <div class="container mb-5 mt-5">
   <form method="post" action="{{url('/teracc')}}" enctype="multipart/form-data" style="position:absolute; top:100px; left:280px; width:1000px;">
     @csrf
@@ -32,7 +33,30 @@ $bukti = DB::select('select * from bukti_pembayaran' );
             <th scope="row">{{$i+1}}</th>
             <td>{{$user->nama_lengkap}}<input name="nama_lengkap" value="{{$user->nama_lengkap}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>
             <td>
-              <img src="{{url($bukti_pembayaran[$i]->gambar)}}" width="200px" height="auto"><input name="nama_parkiran" value="{{$bukti_pembayaran[$i]->gambar}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+              Lihat Bukti
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Foto Bukti</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <img src="{{url($bukti_pembayaran[$i]->gambar)}}" width="200px" height="auto"><input name="nama_parkiran" value="{{$bukti_pembayaran[$i]->gambar}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </td>
             <td>{{$produk->nama_parkiran}}<input name="nama_parkiran" value="{{$produk->nama_parkiran}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>
             <td>

@@ -372,9 +372,9 @@ class MyController extends Controller
         return view("lihat_bukti_teracc", ["bukti_pembayaran" => $bukti_pembayaran]);
     }
 
-    public function detailTransaksi_user($id, Request $request)
+    public function detailTransaksi_user($id)
     {
-        return view("detailTransaksi_user", compact('id'));
+        return view("detail_transaksi", compact('id'));
     }
 
     public function delete_teracc(Request $request)

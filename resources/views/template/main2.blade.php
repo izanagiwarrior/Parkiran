@@ -10,17 +10,18 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>JuPark</title>
   <link rel="icon" href="foto/logo.png" type="image/icon type">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
   <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-  <link rel="stylesheet" href="assets/css/smoothproducts.css">
+  <link rel="stylesheet" href="{{asset('assets/css/smoothproducts.css')}}">
   @if ($result != null)
   <style>
     td,
     th {
       background-color: #708090;
       color: white;
+      text-align: center;
     }
   </style>
   @else
@@ -35,7 +36,7 @@ $csrf = csrf_token();
 $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
 @endphp
 
-<body style="background-image: url('foto/bg.jpg'); height: 100%;  background-position: center;
+<body style="background-image: url({{asset('foto/bg.jpg')}}); height: 100%;  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
   @if ($resulmain != null)
