@@ -36,9 +36,9 @@ $csrf = csrf_token();
 $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
 @endphp
 
-<body style="background-image: url({{asset('foto/bg.jpg')}}); height: 100%;  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;">
+<body style="background-image: url({{asset('foto/bg.jpg')}}); height: 100%;  background-position: center bottom;
+  background-repeat: repeat;
+  background-size: 100% 100%;">
   @if ($resulmain != null)
   <nav class="navbar  navbar-expand-lg navbar-transparent ">
     <a class="navbar-brand" href="{{url('/')}}"><img src="logojog.png" alt=""></a>
