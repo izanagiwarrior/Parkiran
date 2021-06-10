@@ -1,6 +1,11 @@
 @php
 $csrf = csrf_token();
 $result = DB::select('select * from akun where csrf = ?', [$csrf]);
+$bukti = DB::select('select * from bukti_pembayaran' );
+$akun = DB::select('select * from teracc' );
+$product = DB::select('select * from parkiran' );
+$id = $result[0]->id;
+$i = 1
 @endphp
 @if ($result == null)
 <script type="text/javascript">
@@ -11,31 +16,55 @@ $result = DB::select('select * from akun where csrf = ?', [$csrf]);
 @extends("template/main2")
 @section('content2')
 <div class="container mb-5 mt-5">
-
   <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nama</th>
-
+        <th scope="col">No</th>
         <th scope="col">Parkiran</th>
-
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      @for($i=0;$i<count($bukti_pembayaran);$i++) @php $produk=DB::select("select * from parkiran where id=?",[$bukti_pembayaran[$i]->id_produk])[0];
-        $user = DB::select("select * from akun where id = ?", [$bukti_pembayaran[$i]->id_akun])[0];
-        @endphp
-        <tr>
-          <th scope="row">{{$i+1}}</th>
-          <td>{{$user->nama_lengkap}}<input name="nama_lengkap" value="{{$user->nama_lengkap}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>
-
-          <td>{{$produk->nama_parkiran}}<input name="nama_parkiran" value="{{$produk->nama_parkiran}}" class="form-control" id="exampleInputEmail1" placeholder="Nama Parkiran" type="hidden"></td>
-
-        </tr>
-        @endfor
+      @foreach ($akun as $index)
+      @if($index->id_akun == $id)
+      <tr>
+        <th scope="row">{{$i}}</th>
+        @foreach($product as $pd)
+        @if($pd->id == $index->id_produk)
+        <td>{{$pd->nama_parkiran}}</td>
+        @endif
+        @endforeach
+        <td>
+          @if(is_null($index->status))
+          Menuju Lokasi
+          @else
+          {{$index->status}}
+          @endif
+        </td>
+        <td class="d-flex flex-row justify-content-around">
+          @if(is_null($index->status))
+          <form action="{{ route('trackingTeracc') }}" method="post">
+            @csrf
+            <input type="hidden" value="{{ $index->id }}" name="id">
+            <button class="btn btn-success">{{"Sudah Sampai"}}</button>
+          </form>
+          @endif
+          <form action="{{ route('delete_teracc') }}" method="post">
+            @csrf
+            <input type="hidden" value="{{ $index->id }}" name="id">
+            <button class="btn btn-danger">Cancel</button>
+          </form>
+        </td>
+      </tr>
+      @php
+      $i += 1
+      @endphp
+      @endif
+      @endforeach
     </tbody>
   </table>
 
 </div>
+
 @endsection

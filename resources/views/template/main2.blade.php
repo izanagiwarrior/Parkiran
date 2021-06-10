@@ -68,6 +68,9 @@ $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
             <a class="dropdown-item" href="{{url('/hapusedit_produk')}}">Hapus / Edit Parkiran</a>
             <a class="dropdown-item" href="{{url('/lihat_bukti_pembayaran')}}">Lihat Bukti Pembayaran</a>
             <a class="dropdown-item" href="{{url('/lihat_feedback')}}">Lihat Feedback</a>
+            <a class="dropdown-item" href="{{url('/lihat_valley')}}">Lihat Valey</a>
+            <a class="dropdown-item" href="{{url('/lihat_transaksi')}}">Transaksi</a>
+            <a class="dropdown-item" href="{{url('/logout')}}">Keluar</a>
           </div>
         </li>
         @endif
@@ -82,26 +85,26 @@ $resulmain = DB::select('select * from akun where csrf = ?', [$csrf]);
         <a href="{{url('/register')}}" type="submit">Register</a>
         @endif
         @csrf
+        @if ($resulmain != null)
+        @if ($resulmain[0]->role == "admin")
+        <!-- <img style="position: absolute;left:1450px;top:40px;" width=" 50px" alt="" src="foto/admin.png"> <span class="sr-only">(current)</span>Akun Saya</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{url('/profile')}}">Profile</a></li>
+            <li><a href="{{url('/keranjang')}}">Booking</a></li>
+            <li><a href="{{url('/lihat_bukti_teracc')}}">Konfirmasi</a></li>
+            <li><a href="{{url('/logout')}}">Keluar</a></li>
+          </ul> -->
+        <!-- </li> -->
+        @else
         <li style="position: absolute;left:1400px;top:10px;" class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            @if ($resulmain != null)
-            @if ($resulmain[0]->role == "admin")
-            <img style="position: absolute;left:1450px;top:40px;" width=" 50px" alt="" src="foto/admin.png"> <span class="sr-only">(current)</span>Akun Saya</a>
+            <img style="position:absolute;left:1450px;top:40px;" width="50px" alt="" src="foto/guest.png"> <span class="sr-only">(current)</span>Akun Saya</a>
           <ul class="dropdown-menu">
             <li><a href="{{url('/profile')}}">Profile</a></li>
             <li><a href="{{url('/keranjang')}}">Booking</a></li>
             <li><a href="{{url('/lihat_bukti_teracc')}}">Konfirmasi</a></li>
             <li><a href="{{url('/logout')}}">Keluar</a></li>
           </ul>
-        </li>
-        @else
-        <img style="position:absolute;left:1450px;top:40px;" width="50px" alt="" src="foto/guest.png"> <span class="sr-only">(current)</span>Akun Saya</a>
-        <ul class="dropdown-menu">
-          <li><a href="{{url('/profile')}}">Profile</a></li>
-          <li><a href="{{url('/keranjang')}}">Booking</a></li>
-          <li><a href="{{url('/lihat_bukti_teracc')}}">Konfirmasi</a></li>
-          <li><a href="{{url('/logout')}}">Keluar</a></li>
-        </ul>
         </li>
         @endif
         @endif

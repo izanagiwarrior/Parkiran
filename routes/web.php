@@ -81,6 +81,7 @@ Route::post('/register_acc_admin',[MyController::class, 'register_admin']);
 Route::get('/checkout/{id_keranjang}', [MyController::class,"checkout"]);
 Route::get('/teracc/{id_keranjang}', [MyController::class,"teracc_process"]);
 Route::get('/dteracc/{id_keranjang}', [MyController::class,"dteracc_process"]);
+Route::get('/teracc/{id_keranjang}', [MyController::class,"teracc_process"]);
 
 Route::post('/teracc',[MyController::class, 'teracc']);
 
@@ -94,6 +95,13 @@ Route::post('/feedback',[MyController::class, 'feedback_process']);
 
 // Lainnya
 Route::get('/lihat_bukti_pembayaran', [MyController::class,"lihat_bukti_pembayaran"]);
-Route::get('/lihat_bukti_teracc', [MyController::class,"lihat_bukti_teracc"]);
+Route::get('/lihat_bukti_teracc', [MyController::class,"lihat_bukti_teracc"])->name('lihat_bukti_teracc');
+Route::get('/lihat_transaksi', [MyController::class,"lihat_transaksi"])->name('lihat_transaksi');
+Route::get('/lihat_valley', [MyController::class,"lihat_valley"])->name('lihat_valley');
+Route::get('/detailTransaksi_user/{id}', [MyController::class,"detailTransaksi_user"])->name('detailTransaksi_user');
 
+
+
+Route::post('/lihat_bukti_teracc', [MyController::class,"delete_teracc"])->name('delete_teracc');
+Route::post('/trackingTeracc', [MyController::class,"trackingTeracc"])->name('trackingTeracc');
 Route::post('/kirim_bukti_pembayaran',[MyController::class, 'kirim_bukti_pembayaran']);

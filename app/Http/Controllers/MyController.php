@@ -56,7 +56,7 @@ class MyController extends Controller
         DB::insert(
             'insert into akun (username,nama_lengkap,password,email,nohp,alamat,jenis_kelamin,tanggal_lahir,role,csrf) 
             values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$request->input("username"), $request->input("nama"), $request->input("password"), $request->input("email"), $request->input("nohp"), $request->input("alamat"),$request->input("jenis_kelamin"), $request->input("date"), "user", ""]
+            [$request->input("username"), $request->input("nama"), $request->input("password"), $request->input("email"), $request->input("nohp"), $request->input("alamat"), $request->input("jenis_kelamin"), $request->input("date"), "user", ""]
         );
         $result = DB::select('select id,password from akun where username = ?', [$request->input("username")]);
         DB::update('update akun set csrf = ? where id = ?', [csrf_token(), $result[0]->id]);
@@ -327,6 +327,16 @@ class MyController extends Controller
         return view('lihat_feedback');
     }
 
+    public function lihat_transaksi()
+    {
+        return view('lihat_transaksi');
+    }
+
+    public function lihat_valley()
+    {
+        return view('lihat_valley');
+    }
+
     public function feedback()
     {
         return view('feedback');
@@ -363,6 +373,18 @@ class MyController extends Controller
         return view("lihat_bukti_teracc", ["bukti_pembayaran" => $bukti_pembayaran]);
     }
 
+    public function detailTransaksi_user($id, Request $request)
+    {
+        return view("detailTransaksi_user", compact('id'));
+    }
+
+    public function delete_teracc(Request $request)
+    {
+        DB::delete("delete from teracc where id = ?", [$request->id]);
+
+        return redirect(route('lihat_bukti_teracc'));
+    }
+
     public function kirim_bukti_pembayaran(Request $request)
     {
         $file = $request->file('gambar');
@@ -378,6 +400,28 @@ class MyController extends Controller
         (?,?,?,?)", [$metode, $gambar, $id_akun, $id_produk]);
 
         return redirect("/feedback");
+    }
+
+    public function trackingTeracc(Request $request)
+    {
+        $data = DB::select("select status from teracc where id = ?", [$request->id]);
+        foreach($data as $dt){
+            foreach($dt as $dt2){
+                $status = $dt2;
+            }
+        }
+        if ($status == "") {
+            DB::update('UPDATE `teracc` SET `status` = ? WHERE `teracc`.`id` = ?;', ["Sudah Sampai", $request->id]);
+        } elseif ($status == "Sudah Sampai") {
+            echo 1;
+            DB::update('UPDATE `teracc` SET `status` = ? WHERE `teracc`.`id` = ?;', ["Sedang Parkir", $request->id]);
+        } elseif ($status == "Sedang Parkir") {
+            DB::update('UPDATE `teracc` SET `status` = ? WHERE `teracc`.`id` = ?;', ["Parkir Selesai", $request->id]);
+        } else {
+            echo 2;
+        }
+
+        return redirect()->back();
     }
 
 

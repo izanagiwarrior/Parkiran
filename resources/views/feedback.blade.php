@@ -14,108 +14,58 @@ $getClient = DB::select('select * from akun where csrf = ?', [$csrf])
 @section('content')
 
 <style>
-    @import "compass/css3";
-
-    $unchecked-star: '\2606';
-    $unchecked-color: #888;
-    $checked-star: '\2605';
-    $checked-color: #e52;
-
-    .star-cb-group {
-        /* remove inline-block whitespace */
-        font-size: 0;
-
-        * {
-            font-size: 1rem;
-        }
-
-        /* flip the order so we can use the + and ~ combinators */
-        unicode-bidi: bidi-override;
-        direction: rtl;
-
-        &>input {
-            display: none;
-
-            &+label {
-                /* only enough room for the star */
-                display: inline-block;
-                overflow: hidden;
-                text-indent: 9999px;
-                width: 1em;
-                white-space: nowrap;
-                cursor: pointer;
-
-                &:before {
-                    display: inline-block;
-                    text-indent: -9999px;
-                    content: $unchecked-star;
-                    color: $unchecked-color;
-                }
-            }
-
-            &:checked~label:before,
-            &+label:hover~label:before,
-            &+label:hover:before {
-                content: $checked-star;
-                color: #e52;
-                text-shadow: 0 0 1px #333;
-            }
-        }
-
-        /* the hidden clearer */
-        &>.star-cb-clear+label {
-            text-indent: -9999px;
-            width: .5em;
-            margin-left: -.5em;
-        }
-
-        &>.star-cb-clear+label:before {
-            width: .5em;
-        }
-
-        &:hover>input+label:before {
-            content: $unchecked-star;
-            color: $unchecked-color;
-            text-shadow: none;
-        }
-
-        &:hover>input+label:hover~label:before,
-        &:hover>input+label:hover:before {
-            content: $checked-star;
-            color: $checked-color;
-            text-shadow: 0 0 1px #333;
-        }
+    .rate {
+        height: 50px;
+        padding: 0 10px;
+        width: fit-content;
     }
 
-    // extra styles
-    :root {
-        font-size: 2em;
-        font-family: Helvetica, arial, sans-serif;
+    .rate:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
     }
 
-    body {
-        background: #333;
-        color: $unchecked-color;
+    .rate:not(:checked)>label {
+        float: right;
+        width: 1.8em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+        margin: 0 15px;
     }
 
-    fieldset {
-        border: 0;
-        background: #222;
-        width: 5em;
-        border-radius: 1px;
-        padding: 1em 1.5em 0.9em;
-        margin: 1em auto;
+    .rate:not(:checked)>label:before {
+        content: '★ ';
     }
 
-    #log {
-        margin: 1em auto;
-        width: 5em;
-        text-align: center;
-        background: transparent;
+    .rate>input:checked~label {
+        color: #ffc700;
     }
 
-    h1 {
-        text-align: center;
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+        color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+        color: #c59b08;
+    }
+
+    .profile-img {
+        border-radius: 50%;
+        background-color: blue;
+        width: 150px;
+        height: 150px;
+        position: relative;
+        top: -90px;
+        left: 100px;
+        border: 5px solid #fff
     }
 </style>
 
@@ -146,27 +96,29 @@ $getClient = DB::select('select * from akun where csrf = ?', [$csrf])
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputNoHP" class="col-sm-5">No HP</label>
-                    <fieldset>
-                        <span class="star-cb-group">
-                            <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
-                            <input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4</label>
-                            <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
-                            <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
-                            <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
-                            <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
-                        </span>
-                    </fieldset>
+                    <label for="inputNoHP" class="col-sm-5">Rating</label>
+                    <div class="rate mx-auto">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1</label>
                     </div>
-                    <div class="form-group row">
-                        <label for="feedback" class="col-sm-5">Feeback</label>
-                        <div class="col-sm-12 w-100">
-                            <textarea id="feedback" name="feedback" rows="4" cols="44"></textarea>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label for="feedback" class="col-sm-5">Feeback</label>
+                    <div class="col-sm-12 w-100">
+                        <textarea id="feedback" name="feedback" rows="4" cols="44" required></textarea>
                     </div>
-                    <button class="btn btn-primary w-100" style="background-color:#597882;border-radius: 10px; ">Submit</button>
-                    <br><br>
-                    <a href="{{url('/')}}" class="btn btn-light w-100" style=" border-radius: 10px;">Skip</a>
+                </div>
+                <button class="btn btn-primary w-100" style="background-color:#597882;border-radius: 10px; ">Submit</button>
+                <br><br>
+                <a href="{{url('/')}}" class="btn btn-light w-100" style=" border-radius: 10px;">Skip</a>
         </form>
         </div>
     </section>
